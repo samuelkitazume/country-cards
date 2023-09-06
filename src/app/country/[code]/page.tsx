@@ -1,10 +1,11 @@
 import Card from '@/app/components/card'
 import Pill from '@/app/components/pill'
 import { RestCountries } from '@/types/RestCountries'
+import Link from 'next/link'
 
 // TODO: Remove this awful any
-async function getCountryData(name: string): Promise<RestCountries[]> {
-  const res = await fetch(`https://restcountries.com/v3.1/name/${name}`)
+async function getCountryData(code: string): Promise<RestCountries[]> {
+  const res = await fetch(`https://restcountries.com/v3.1/alpha/${code}`)
   if (!res.ok) {
     throw new Error('Failed to fetch data')
   }
@@ -12,8 +13,8 @@ async function getCountryData(name: string): Promise<RestCountries[]> {
   return res.json()
 }
 
-export default async function CountryName({ params }: { params: { name: string } }) {
-  const [data] = await getCountryData(params.name)
+export default async function CountryName({ params }: { params: { code: string } }) {
+  const [data] = await getCountryData(params.code)
 
   const information: [string, () => any][] = [
     ['capital', function () {
@@ -32,7 +33,11 @@ export default async function CountryName({ params }: { params: { name: string }
     }],
     ['borders with', function () {
       return data.borders?.map((countryCode: string, index: number) => (
-        <Pill key={`${countryCode}-${index}`}>{countryCode}</Pill>
+        <Pill key={`${countryCode}-${index}`}>
+          <Link href={countryCode}>
+            {countryCode}
+          </Link>
+        </Pill>
       ))
     }]
   ]
