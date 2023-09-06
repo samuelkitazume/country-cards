@@ -1,8 +1,9 @@
 import Card from '@/app/components/card'
 import Pill from '@/app/components/pill'
+import { RestCountries } from '@/types/RestCountries'
 
 // TODO: Remove this awful any
-async function getCountryData(name: string): Promise<any> {
+async function getCountryData(name: string): Promise<RestCountries[]> {
   const res = await fetch(`https://restcountries.com/v3.1/name/${name}`)
   if (!res.ok) {
     throw new Error('Failed to fetch data')
@@ -16,21 +17,21 @@ export default async function CountryName({ params }: { params: { name: string }
 
   const information: [string, () => any][] = [
     ['capital', function () {
-      return (this as any).capital[0]
+      return data.capital[0]
     }],
     ['population', function () {
-      return (this as any).population.toLocaleString("en-US")
+      return data.population.toLocaleString("en-US")
     }],
     ['independent', function () {
-      return (this as any).independent ? 'Yes' : 'No'
+      return data.independent ? 'Yes' : 'No'
     }],
     ['continents', function () {
-      return (this as any).continents?.map((continent: string, index: number) => (
+      return data.continents?.map((continent: string, index: number) => (
         <Pill key={`${continent}-${index}`}>{continent}</Pill>
       ))
     }],
     ['borders with', function () {
-      return (this as any).borders?.map((countryCode: string, index: number) => (
+      return data.borders?.map((countryCode: string, index: number) => (
         <Pill key={`${countryCode}-${index}`}>{countryCode}</Pill>
       ))
     }]
@@ -52,7 +53,7 @@ export default async function CountryName({ params }: { params: { name: string }
                     {piece[0]}
                   </div>
                   <div className="col-span-2 flex flex-wrap items-center gap-1 text-xs">
-                    {(piece[1].bind(data))()}
+                    {piece[1]()}
                   </div>
                 </div>
               )
