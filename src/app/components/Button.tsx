@@ -9,14 +9,14 @@ export default function Button({
   primary = false,
   dark = false
 }: {
-  children: React.ReactNode
+  children?: React.ReactNode
   href: string
   text?: string
   inline?: boolean
   primary?: boolean
   dark?: boolean
 }) {
-  const base = classNames("flex", "flex-1", "items-center", "justify-center")
+  const base = classNames("flex", "flex-1", "items-center", "justify-center", "w-full")
   const borderClasses = classNames("rounded-lg", "border")
   const variant = {
     primary: [
