@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { RestCountries } from '@/types/RestCountries'
 import CountryPageContainer from '@/app/containers/CountryPageContainer'
 import Button from '@/app/components/Button'
