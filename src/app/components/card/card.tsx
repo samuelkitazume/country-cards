@@ -4,7 +4,7 @@ export default function Card({
   children: React.ReactNode
 }) {
   return (
-    <div className="flex min-h-[70vh] w-96 flex-col items-center rounded-3xl bg-gradient-to-b from-stone-800 to-zinc-950 shadow-lg shadow-zinc-400">
+    <div className="flex min-h-[70vh] w-96 flex-col items-center rounded-3xl bg-main-background bg-left-bottom shadow-lg shadow-black ">
       {children}
     </div>
   )

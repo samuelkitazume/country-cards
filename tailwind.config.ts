@@ -18,6 +18,7 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'main-background': "linear-gradient(to right bottom, rgba(24, 24, 27, 0), rgba(24, 24, 27, 1)), url('/img/country-cards-bg.png')",
       },
     },
   },

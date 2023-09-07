@@ -1,4 +1,6 @@
-import Card from '@/app/components/card'
+import InfoTable from '@/app/components/InfoTable/InfoTable'
+import InfoTableRow from '@/app/components/InfoTable/InfoTableRow'
+import Flag from '@/app/components/Flag'
 import Pill from '@/app/components/pill'
 import { RestCountries } from '@/types/RestCountries'
 import Link from 'next/link'
@@ -43,30 +45,19 @@ export default async function CountryName({ params }: { params: { code: string }
   ]
 
   return (
-    <main className="box-border flex min-h-screen flex-col items-center justify-between p-24">
-      <Card.Root>
-        <Card.Flag url={data.flags.svg} alt={data.flags.alt} />
-        <Card.Content>
-          <h1 className="mt-5 text-4xl">{data.name.common}</h1>
-          <Pill>{data.name.official}</Pill>
-          <div className="mt-4 divide-y divide-dashed divide-zinc-800">
-            {
-              information.map((piece, index) =>
-              (
-                <div key={`${piece[0]}-${index}`} className="grid w-72 grid-cols-3 bg-zinc-900 px-4 py-2">
-                  <div className="col-span-1 flex items-center text-xs capitalize text-zinc-500">
-                    {piece[0]}
-                  </div>
-                  <div className="col-span-2 flex flex-wrap items-center gap-1 text-xs">
-                    {piece[1]()}
-                  </div>
-                </div>
-              )
-              )
-            }
-          </div>
-        </Card.Content>
-      </Card.Root>
+    <main className="box-border flex min-h-screen flex-col items-center justify-center bg-zinc-900 lg:p-24">
+      <Flag url={data.flags.svg} alt={data.flags.alt} />
+      <InfoTable hide name={data.name.common} official={data.name.official}>
+        {
+          information.map((piece, index) =>
+          (
+            <InfoTableRow key={`${piece[0]}-${index}`} label={piece[0]}>
+              <>{piece[1]()}</>
+            </InfoTableRow>
+          )
+          )
+        }
+      </InfoTable>
     </main>
   )
 }

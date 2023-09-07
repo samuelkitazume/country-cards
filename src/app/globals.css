@@ -4,6 +4,7 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
+  --background-rbg: 214, 219, 220;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
@@ -11,6 +12,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 0, 0, 0;
+    --background-rbg: 39, 39, 42;
     --background-start-rgb: 214, 219, 220;
     --background-end-rgb: 255, 255, 255;
   }
@@ -18,10 +20,5 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: rgb(var(--background-rgb));
 }
