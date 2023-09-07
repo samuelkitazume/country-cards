@@ -10,8 +10,8 @@ const config: Config = {
   theme: {
     colors: {
       ...colors,
-      primary: colors.pink,
-      secondary: colors.cyan
+      primary: colors.blue,
+      secondary: colors.teal
     },
     extend: {
       backgroundImage: {
